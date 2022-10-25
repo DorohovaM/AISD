@@ -1,0 +1,31 @@
+// 1) конструктор копирования
+
+Queue (const Queue& q): start(q.start), size(q.size), end(q.end), buffer(new int[size]) {
+  for (int i = 0; i < size; i++) {
+  buffer[i] = q.buffer[i];
+  }
+}
+
+
+// 2) оператор присваивания 
+
+Queue& operator=(const Queue& q){
+  if (this != &q) {
+    if (counter() >= q.counter()) {
+      for (int i = 0; i <= q.size; i++)
+        buffer[i] = q.buffer[i];
+      end = q.end;
+      start = q.start;
+    }
+    else {
+      delete[] buffer;
+      buffer = new int[q.size];
+      for (int i = 0; i < q.size; i++)
+        buffer[i] = q.buffer[i];
+      start = q.start;
+      end = q.end;
+      size = q.size;
+    }
+  }
+  return *this;
+}
