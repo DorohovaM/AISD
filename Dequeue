@@ -1,0 +1,37 @@
+Dequeue(const Dequeue& L) {
+    head = tail = NULL;
+    counter = 0;
+    Node* tmp = L.head;
+    while (tmp){
+        this->push_back(tmp->get_element());
+        tmp = tmp->get_next();
+    }
+}
+
+
+~Dequeue(){
+    reset();
+} void reset() {
+    while (counter){
+        this->pop_back();
+    } Dequeue& operator=(const Dequeue& d) {
+        if (&d == this) return *this;
+        if (!IsEmpty()) {
+            reset();
+        }
+        if (d.IsEmpty()) {
+            head = tail = NULL;
+            counter = 0;
+        }
+        else {
+            counter = 0;
+            Node* tmp = d.head;
+            while (tmp) {
+                this->push_back(tmp->get_element());
+                tmp = tmp->get_next();
+            }
+        }
+      return* this;
+    }
+}
+
